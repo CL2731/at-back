@@ -1,14 +1,12 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
-
 // The `/api/tags` endpoint
-
 router.get('/', async (req, res) => {
   try {
     console.log(Tag)
     console.log("working?")
     const tagData = await Tag.findAll({
-      include: [{model: Product}, {through: ProductTag}],
+      include: [{model: Product, through: ProductTag}],
     });
     console.log(tagData)
     res.status(200).json(tagData);
